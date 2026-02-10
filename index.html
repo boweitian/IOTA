@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOTA - Internet of Things Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5dade2;
+            --secondary: #3498db;
+            --dark: #1e4d6b;
+            --darker: #163a52;
+            --light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fefefe;  /* 浅灰色背景，和logo背景一致 */
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav .logo-img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+        }
+
+        nav .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--dark);  /* 深蓝色文字 */
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--dark);  /* 深蓝色文字 */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: white;
+            padding: 150px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.15;
+            top: -250px;
+            right: -250px;
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.15;
+            bottom: -200px;
+            left: -200px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(93, 173, 226, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(93, 173, 226, 0.6);
+            background: var(--secondary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(93, 173, 226, 0.3);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Technology Section */
+        .technology {
+            background: var(--light);
+            padding: 100px 20px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .tech-item h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .tech-item p {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .use-case {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+        }
+
+        .use-case::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .use-case h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .use-case p {
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--dark);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
+            nav .logo-text {
+                font-size: 1.4em;
+            }
+
+            nav .logo-img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);  /* 深蓝色 */
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <img src="IOTA.png" alt="IOTA Logo" class="logo-img">
+                <div class="logo-text">IOTA</div>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Internet of Things Architecture</h1>
+            <p>Building the future of connected devices with cutting-edge IoT solutions. Seamless integration, powerful analytics, and scalable infrastructure.</p>
+            <a href="#features" class="btn">Get Started</a>
+            <a href="#contact" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span>IOTA</span></h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Seamless Connectivity</h3>
+                    <p>Connect billions of devices effortlessly with our robust IoT infrastructure. Support for multiple protocols and standards ensures compatibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Processing</h3>
+                    <p>Process and analyze data in real-time with our high-performance edge computing capabilities. Make instant decisions based on live data streams.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-level encryption and security protocols protect your data and devices. Built-in threat detection and automatic security updates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Transform raw data into actionable insights with AI-powered analytics. Predictive maintenance and intelligent automation built-in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Integration</h3>
+                    <p>Seamlessly integrate with major cloud platforms. Deploy anywhere with our hybrid cloud architecture and edge computing support.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Infinite Scalability</h3>
+                    <p>Scale from prototype to production with ease. Handle millions of devices and billions of messages without infrastructure changes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="technology" id="technology">
+        <div class="container">
+            <h2 class="section-title">Powered by <span>Cutting-Edge Technology</span></h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>MQTT Protocol</h4>
+                    <p>Lightweight messaging for IoT</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Edge Computing</h4>
+                    <p>Process data at the source</p>
+                </div>
+                <div class="tech-item">
+                    <h4>AI/ML Integration</h4>
+                    <p>Intelligent device management</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Blockchain Security</h4>
+                    <p>Immutable data records</p>
+                </div>
+                <div class="tech-item">
+                    <h4>5G Ready</h4>
+                    <p>Ultra-low latency support</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Digital Twin</h4>
+                    <p>Virtual device modeling</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <h2 class="section-title">Real-World <span>Applications</span></h2>
+            <div class="use-case-grid">
+                <div class="use-case">
+                    <h3>🏭 Smart Manufacturing</h3>
+                    <p>Optimize production lines with real-time monitoring, predictive maintenance, and automated quality control.</p>
+                </div>
+                <div class="use-case">
+                    <h3>🏙️ Smart Cities</h3>
+                    <p>Manage traffic, lighting, waste management, and public services efficiently with interconnected IoT sensors.</p>
+                </div>
+                <div class="use-case">
+                    <h3>🏥 Healthcare IoT</h3>
+                    <p>Monitor patient vitals remotely, manage medical equipment, and enable telemedicine with secure connectivity.</p>
+                </div>
+                <div class="use-case">
+                    <h3>🚜 Agriculture Tech</h3>
+                    <p>Precision farming with soil monitoring, automated irrigation, and crop health analysis for maximum yield.</p>
+                </div>
+                <div class="use-case">
+                    <h3>🏠 Smart Homes</h3>
+                    <p>Create intelligent living spaces with connected appliances, energy management, and home automation.</p>
+                </div>
+                <div class="use-case">
+                    <h3>🚗 Connected Vehicles</h3>
+                    <p>Enable vehicle-to-vehicle communication, fleet management, and autonomous driving capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>10B+</h2>
+                    <p>Connected Devices</p>
+                </div>
+                <div class="stat-item">
+                    <h2>99.9%</h2>
+                    <p>Uptime Guarantee</p>
+                </div>
+                <div class="stat-item">
+                    <h2>150+</h2>
+                    <p>Countries Served</p>
+                </div>
+                <div class="stat-item">
+                    <h2>5000+</h2>
+                    <p>Enterprise Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of companies already leveraging IOTA for their IoT solutions</p>
+            <a href="#" class="btn">Start Free Trial</a>
+            <a href="#" class="btn btn-outline">Schedule Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>IOTA</h4>
+                    <p>Empowering the Internet of Things with intelligent, scalable, and secure infrastructure.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Platform Overview</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 IOTA. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
