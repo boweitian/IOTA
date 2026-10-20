@@ -68,7 +68,7 @@ def build():
     body = ('<path d="M4 0h892v4h4v104h-4v4H4v-4H0V4h4z" fill="#071b3c"/>'
             f'<path d="{lettering}" fill="#bdd7f0"/>')
     (destination / 'moonlight-headline.svg').write_text(svg(title, 900, 112, body))
-    for label in ['Demo', 'Chinese', 'English', 'Presentation']:
+    for label in ['Demo', 'Chinese', 'English', 'Presentation', 'Blog']:
         width = len(label) * 12 + 32
         d = path(pixels(label, 17, 11, 2), 2)
         body = (f'<path d="M3 0h{width-6}v3h3v30h-3v3H3v-3H0V3h3z" fill="#527bac"/>'
@@ -76,7 +76,7 @@ def build():
                 f'<path d="M8 3h{width-16}v1H8z" fill="#244a78"/>'
                 f'<path d="{d}" fill="#c8ddf5"/>')
         (destination / f'moonlight-{label.lower()}.svg').write_text(svg(label, width, 36, body))
-    print('Built pixel headline and four navigation buttons.')
+    print('Built pixel headline and five navigation buttons.')
 
 
 if __name__ == '__main__':
