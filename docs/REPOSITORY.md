@@ -36,15 +36,15 @@ GitHub strips custom README CSS and scripts. The headline and navigation buttons
 python scripts/build_readme_assets.py
 ```
 
-Both languages live on `main`, in the same repository homepage. The Chinese and English pixel buttons jump to the corresponding section of the README. There is no language branch and no separate file-preview navigation.
+Both languages live on `main` as separate rendered Markdown pages. The English repository homepage is `README.md`; its Chinese button opens `docs/translations/README.zh-CN.md` in GitHub's Markdown preview. The English button there returns to the repository homepage. There is no separate language branch.
 
-Maintain the two text sources in `docs/translations/README.en.md` and `docs/translations/README.zh-CN.md`, then regenerate the homepage:
+Maintain the English source in `docs/translations/README.en.md` and regenerate the root homepage after changes:
 
 ```bash
 python scripts/build_readme.py
 ```
 
-Commit the sources, generated README, and any artwork changes together on `main`. The two languages share the same artwork and presentation download URL. The `moonlight-*.svg` filenames identify the blue artwork and avoid reusing the previous image-cache URLs.
+Maintain the Chinese page directly in `docs/translations/README.zh-CN.md`. Commit language and artwork changes together on `main`. Both pages share the same cover, restrained moonlit pixel lettering, and presentation download link. The headline image query identifies the current visual revision to avoid reusing an older cached appearance.
 
 ## Animated cover
 

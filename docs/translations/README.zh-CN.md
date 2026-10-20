@@ -2,13 +2,13 @@
   <a href="https://github.com/boweitian/IOTA/blob/main/assets/brand/icon.mp4"><img src="../../assets/brand/moonlit-video-cover.webp" alt="IOTA animated cover — original MP4 video" width="100%"></a>
 </p>
 
-<h1 align="center">
-  <img src="../../assets/brand/moonlight-headline.svg" alt="An inner world for intelligence that people can understand and shape." width="760">
-</h1>
+<p align="center">
+  <img src="../../assets/brand/moonlight-headline.svg?v=moonlight-soft-1" alt="An inner world for intelligence that people can understand and shape." width="680">
+</p>
 
 <p align="center">
   <a href="https://bowei.netlify.app/iota/"><img src="../../assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a>
-  <a href="#english"><img src="../../assets/brand/moonlight-english.svg" alt="English" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA"><img src="../../assets/brand/moonlight-english.svg" alt="English" height="36"></a>
   <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="../../assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a>
 </p>
 

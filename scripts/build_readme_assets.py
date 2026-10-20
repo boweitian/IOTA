@@ -35,13 +35,13 @@ GLYPHS = {
 }
 
 
-def pixels(text, x, y, unit):
+def pixels(text, x, y, unit, advance=6):
     cells = []
     for index, letter in enumerate(text.upper()):
         for row, bits in enumerate(GLYPHS[letter]):
             for column, bit in enumerate(bits):
                 if bit == '1':
-                    cells.append((x + (index * 6 + column) * unit, y + row * unit))
+                    cells.append((x + (index * advance + column) * unit, y + row * unit))
     return cells
 
 
@@ -62,12 +62,12 @@ def build():
     lines = ['AN INNER WORLD FOR INTELLIGENCE', 'THAT PEOPLE CAN UNDERSTAND AND SHAPE.']
     cells = []
     for number, line in enumerate(lines):
-        width = (len(line) * 6 - 1) * 4
-        cells.extend(pixels(line, (900 - width) // 2, 12 + number * 48, 4))
-    lettering = path(cells, 4)
-    body = (f'<path d="{lettering}" fill="#ccddf0" transform="translate(1 1)"/>'
-            f'<path d="{lettering}" fill="#244a78"/>')
-    (destination / 'moonlight-headline.svg').write_text(svg(title, 900, 108, body))
+        width = ((len(line) - 1) * 7 + 5) * 3
+        cells.extend(pixels(line, (900 - width) // 2, 23 + number * 42, 3, advance=7))
+    lettering = path(cells, 3)
+    body = ('<path d="M4 0h892v4h4v104h-4v4H4v-4H0V4h4z" fill="#071b3c"/>'
+            f'<path d="{lettering}" fill="#bdd7f0"/>')
+    (destination / 'moonlight-headline.svg').write_text(svg(title, 900, 112, body))
     for label in ['Demo', 'Chinese', 'English', 'Presentation']:
         width = len(label) * 12 + 32
         d = path(pixels(label, 17, 11, 2), 2)

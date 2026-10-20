@@ -1,4 +1,4 @@
-"""Build a single bilingual repository homepage from two translation sources."""
+"""Build the English homepage; Chinese stays in its own Markdown page on main."""
 from pathlib import Path
 import posixpath
 import re
@@ -23,11 +23,8 @@ def render(source):
 
 def build():
     english = render(Path('docs/translations/README.en.md'))
-    chinese = render(Path('docs/translations/README.zh-CN.md'))
-    text = ('<a name="english"></a>\n\n' + english.rstrip()
-            + '\n\n---\n\n<a name="chinese"></a>\n\n' + chinese.rstrip() + '\n')
-    (ROOT / 'README.md').write_text(text)
-    print('Built one bilingual README; both languages stay on main.')
+    (ROOT / 'README.md').write_text(english.rstrip() + '\n')
+    print('Built English homepage; Chinese has a separate rendered page on main.')
 
 
 if __name__ == '__main__':
