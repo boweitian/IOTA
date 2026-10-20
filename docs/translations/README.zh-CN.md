@@ -10,7 +10,7 @@
   <a href="https://bowei.netlify.app/iota/"><img src="../../assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a>
   <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="../../assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a>
   <a href="https://bowei.netlify.app/blog/"><img src="../../assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a>
-  <a href="https://github.com/boweitian/IOTA"><img src="../../assets/brand/moonlight-language.svg?v=direct-switch-1" alt="Language" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA"><img src="../../assets/brand/moonlight-language.svg?v=no-arrow-d94b3c2" alt="Language" height="36"></a>
 </p>
 
 IOTA 探索如何把人的意图转化为模型内部可测试的变化：理解行为，塑造内部概念几何，并与一个持续存在的数字个体共同成长。
