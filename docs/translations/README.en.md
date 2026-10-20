@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../../assets/brand/moonlit-cat-by-the-sea.png" alt="Moonlit Cat by the Sea" width="100%">
+  <a href="https://github.com/boweitian/IOTA/blob/main/assets/brand/icon.mp4"><img src="../../assets/brand/moonlit-video-cover.webp" alt="IOTA animated cover — original MP4 video" width="100%"></a>
 </p>
 
 <h1 align="center">

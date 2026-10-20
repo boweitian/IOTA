@@ -45,3 +45,20 @@ python scripts/build_readme.py
 ```
 
 Commit the sources, generated README, and any artwork changes together on `main`. The two languages share the same artwork and presentation download URL. The `moonlight-*.svg` filenames identify the blue artwork and avoid reusing the previous image-cache URLs.
+
+## Animated cover
+
+Both language sections use `assets/brand/moonlit-video-cover.webp`, a looping
+animation generated from the full `assets/brand/icon.mp4` clip. The source video
+is preserved, and clicking the cover opens its GitHub file page.
+
+The WebP retains the video's 864×480 resolution and full duration, samples 12
+frames per second, and loops continuously. Regenerate it with an installed FFmpeg
+or the optional `imageio-ffmpeg` package:
+
+```bash
+python scripts/build_cover.py
+python scripts/build_readme.py
+```
+
+Pass `--ffmpeg /path/to/ffmpeg` when the executable is outside `PATH`.
