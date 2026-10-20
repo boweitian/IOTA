@@ -67,7 +67,7 @@ def build():
     lettering = path(cells, 4)
     body = (f'<path d="{lettering}" fill="#ccddf0" transform="translate(1 1)"/>'
             f'<path d="{lettering}" fill="#244a78"/>')
-    (destination / 'headline.svg').write_text(svg(title, 900, 108, body))
+    (destination / 'moonlight-headline.svg').write_text(svg(title, 900, 108, body))
     for label in ['Demo', 'Chinese', 'English', 'Presentation']:
         width = len(label) * 12 + 32
         d = path(pixels(label, 17, 11, 2), 2)
@@ -75,7 +75,7 @@ def build():
                 f'<path d="M4 1h{width-8}v3h3v28h-3v3H4v-3H1V4h3z" fill="#0b284e"/>'
                 f'<path d="M8 3h{width-16}v1H8z" fill="#244a78"/>'
                 f'<path d="{d}" fill="#c8ddf5"/>')
-        (destination / f'button-{label.lower()}.svg').write_text(svg(label, width, 36, body))
+        (destination / f'moonlight-{label.lower()}.svg').write_text(svg(label, width, 36, body))
     print('Built pixel headline and four navigation buttons.')
 
 

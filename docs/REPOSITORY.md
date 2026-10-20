@@ -36,15 +36,12 @@ GitHub strips custom README CSS and scripts. The headline and navigation buttons
 python scripts/build_readme_assets.py
 ```
 
-The English repository home is `main`. The Chinese button opens the `zh-CN` repository home, where only the root README differs. It opens the same repository layout and localized introduction instead of a single-file preview. Both languages link the presentation to GitHub's raw-download endpoint.
+Both languages live on `main`, in the same repository homepage. The Chinese and English pixel buttons jump to the corresponding section of the README. There is no language branch and no separate file-preview navigation.
 
-Maintain the translation in `docs/translations/README.zh-CN.md`. After committing shared changes to `main`, update the language branch in a separate worktree based on the latest `main`:
+Maintain the two text sources in `docs/translations/README.en.md` and `docs/translations/README.zh-CN.md`, then regenerate the homepage:
 
 ```bash
-git worktree add -b zh-home-update /tmp/iota-zh-home main
-python scripts/localize_readme.py --output /tmp/iota-zh-home/README.md
-git -C /tmp/iota-zh-home add README.md
-git -C /tmp/iota-zh-home commit -m "Update Chinese repository home"
+python scripts/build_readme.py
 ```
 
-Publish that commit to `zh-CN` while preserving branch history. If `zh-CN` already exists, base the update on its current tip and merge the latest `main` before regenerating the root README. Avoid force-pushing shared branch history.
+Commit the sources, generated README, and any artwork changes together on `main`. The two languages share the same artwork and presentation download URL. The `moonlight-*.svg` filenames identify the blue artwork and avoid reusing the previous image-cache URLs.
