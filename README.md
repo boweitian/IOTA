@@ -10,7 +10,7 @@
   <a href="https://bowei.netlify.app/iota/"><img src="assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a>
   <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a>
   <a href="https://bowei.netlify.app/blog/"><img src="assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a>
-  <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="assets/brand/moonlight-language.svg?v=no-arrow-d94b3c2" alt="Language" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="assets/brand/moonlight-language-plain.svg" alt="Language" height="36"></a>
 </p>
 
 IOTA connects human intentions to testable changes inside a model. We study how to understand behavior, shape internal concept geometry, and grow alongside a persistent digital individual.

@@ -69,16 +69,14 @@ def build():
             f'<path d="{lettering}" fill="#bdd7f0"/>')
     (destination / 'moonlight-headline.svg').write_text(svg(title, 900, 112, body))
     for label in ['Demo', 'Chinese', 'English', 'Presentation', 'Blog', 'Language']:
-        inset = 20 if label == 'Language' else 0
-        width = len(label) * 12 + 32 + inset
-        d = path(pixels(label, 17 + inset, 11, 2), 2)
+        width = len(label) * 12 + 32
+        d = path(pixels(label, 17, 11, 2), 2)
         body = (f'<path d="M3 0h{width-6}v3h3v30h-3v3H3v-3H0V3h3z" fill="#527bac"/>'
                 f'<path d="M4 1h{width-8}v3h3v28h-3v3H4v-3H1V4h3z" fill="#0b284e"/>'
                 f'<path d="M8 3h{width-16}v1H8z" fill="#244a78"/>'
                 f'<path d="{d}" fill="#c8ddf5"/>')
-        if label == 'Language':
-            body += '<path d="M14 12h2v2h2v2h2v4h-2v2h-2v2h-2z" fill="#ffffff"/>'
-        (destination / f'moonlight-{label.lower()}.svg').write_text(svg(label, width, 36, body))
+        filename = 'moonlight-language-plain.svg' if label == 'Language' else f'moonlight-{label.lower()}.svg'
+        (destination / filename).write_text(svg(label, width, 36, body))
     print('Built pixel headline and six navigation buttons.')
 
 
