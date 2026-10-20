@@ -36,7 +36,7 @@ GitHub strips custom README CSS and scripts. The headline and navigation buttons
 python scripts/build_readme_assets.py
 ```
 
-Both languages live on `main` as separate rendered Markdown pages. The English repository homepage is `README.md`; the Language disclosure after Demo, Presentation, and Blog offers English and 简体中文. Its Chinese choice opens `docs/translations/README.zh-CN.md` in GitHub's Markdown preview, and English returns to the repository homepage. All four controls share one table row. The final cell encloses the native disclosure arrow and Language button together; GitHub strips the custom CSS needed to put its native marker inside the SVG itself. The Language label and both choices use the same 36-pixel SVG button style, pixel font, colors, and border as the other navigation buttons. There is no separate language branch.
+Both languages live on `main` as separate rendered Markdown pages. The English repository homepage is `README.md`. The Language button directly switches between English and Chinese: on the English page it opens `docs/translations/README.zh-CN.md` in GitHub's Markdown preview, and on the Chinese page it returns to the repository homepage. Demo, Presentation, Blog, and Language share one centered row without a surrounding table or border. The white arrow is drawn inside the Language SVG's blue frame; there is no native disclosure marker or dropdown. All four buttons use the same 36-pixel height, pixel font, colors, and border style. There is no separate language branch.
 
 Maintain the English source in `docs/translations/README.en.md` and regenerate the root homepage after changes:
 

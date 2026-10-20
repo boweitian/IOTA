@@ -6,22 +6,12 @@
   <img src="assets/brand/moonlight-headline.svg?v=moonlight-soft-1" alt="An inner world for intelligence that people can understand and shape." width="680">
 </p>
 
-<table align="center">
-  <tr>
-    <td align="center" valign="top"><a href="https://bowei.netlify.app/iota/"><img src="assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a></td>
-    <td align="center" valign="top"><a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a></td>
-    <td align="center" valign="top"><a href="https://bowei.netlify.app/blog/"><img src="assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a></td>
-    <td align="center" valign="top">
-      <details>
-        <summary><picture><img src="assets/brand/moonlight-language.svg" alt="Language" height="36" align="absmiddle"></picture></summary>
-        <p>
-          <a href="https://github.com/boweitian/IOTA"><img src="assets/brand/moonlight-english.svg" alt="English" height="36"></a><br>
-          <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="assets/brand/moonlight-chinese.svg" alt="简体中文" height="36"></a>
-        </p>
-      </details>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://bowei.netlify.app/iota/"><img src="assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a>
+  <a href="https://bowei.netlify.app/blog/"><img src="assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="assets/brand/moonlight-language.svg?v=direct-switch-1" alt="Language" height="36"></a>
+</p>
 
 IOTA connects human intentions to testable changes inside a model. We study how to understand behavior, shape internal concept geometry, and grow alongside a persistent digital individual.
 
