@@ -14,10 +14,10 @@
 
 <div align="center">
   <details>
-    <summary>Language</summary>
+    <summary><picture><img src="assets/brand/moonlight-language.svg" alt="Language" height="36" align="absmiddle"></picture></summary>
     <p>
-      <a href="https://github.com/boweitian/IOTA">English</a><br>
-      <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md">简体中文</a>
+      <a href="https://github.com/boweitian/IOTA"><img src="assets/brand/moonlight-english.svg" alt="English" height="36"></a><br>
+      <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="assets/brand/moonlight-chinese.svg" alt="简体中文" height="36"></a>
     </p>
   </details>
 </div>
