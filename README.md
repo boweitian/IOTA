@@ -3,13 +3,13 @@
 </p>
 
 <h1 align="center">
-  <img src="assets/brand/headline.svg" alt="An inner world for intelligence that people can understand and shape." width="100%">
+  <img src="assets/brand/headline.svg" alt="An inner world for intelligence that people can understand and shape." width="760">
 </h1>
 
 <p align="center">
-  <a href="https://bowei.netlify.app/iota/"><img src="assets/brand/button-demo.svg" alt="Demo" height="48"></a>
-  <a href="https://github.com/boweitian/IOTA/tree/zh-CN"><img src="assets/brand/button-chinese.svg" alt="Chinese" height="48"></a>
-  <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/button-presentation.svg" alt="Presentation" height="48"></a>
+  <a href="https://bowei.netlify.app/iota/"><img src="assets/brand/button-demo.svg" alt="Demo" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA/tree/zh-CN"><img src="assets/brand/button-chinese.svg" alt="Chinese" height="36"></a>
+  <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/button-presentation.svg" alt="Presentation" height="36"></a>
 </p>
 
 IOTA connects human intentions to testable changes inside a model. We study how to understand behavior, shape internal concept geometry, and grow alongside a persistent digital individual.

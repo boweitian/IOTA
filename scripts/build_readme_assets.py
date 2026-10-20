@@ -59,28 +59,23 @@ def build():
     destination = ROOT / 'assets/brand'
     destination.mkdir(parents=True, exist_ok=True)
     title = 'An inner world for intelligence that people can understand and shape.'
-    lines = ['AN INNER WORLD', 'FOR INTELLIGENCE THAT PEOPLE', 'CAN UNDERSTAND AND SHAPE.']
+    lines = ['AN INNER WORLD FOR INTELLIGENCE', 'THAT PEOPLE CAN UNDERSTAND AND SHAPE.']
     cells = []
     for number, line in enumerate(lines):
-        width = (len(line) * 6 - 1) * 6
-        cells.extend(pixels(line, (1000 - width) // 2, 12 + number * 62, 6))
-    lettering = path(cells, 6)
-    body = (f'<path d="{lettering}" fill="#193c32" transform="translate(5 7)"/>'
-            f'<path d="{lettering}" fill="#60815a" transform="translate(2 3)"/>'
-            f'<path d="{lettering}" fill="#c8dcb8"/>')
-    highlights = [(x, y) for i, (x, y) in enumerate(cells) if i % 9 == 0]
-    body += f'<path d="{path(highlights, 2)}" fill="#f0f6df"/>'
-    (destination / 'headline.svg').write_text(svg(title, 1000, 210, body))
+        width = (len(line) * 6 - 1) * 4
+        cells.extend(pixels(line, (900 - width) // 2, 12 + number * 48, 4))
+    lettering = path(cells, 4)
+    body = (f'<path d="{lettering}" fill="#ccddf0" transform="translate(1 1)"/>'
+            f'<path d="{lettering}" fill="#244a78"/>')
+    (destination / 'headline.svg').write_text(svg(title, 900, 108, body))
     for label in ['Demo', 'Chinese', 'English', 'Presentation']:
-        width = len(label) * 18 + 40
-        d = path(pixels(label, 20, 13, 3), 3)
-        body = (f'<path d="M4 4h{width-8}v4h4v40h-4v4H4v-4H0V8h4z" fill="#193c32"/>'
-                f'<path d="M7 7h{width-14}v3h4v32h-4v3H7v-3H3V10h4z" fill="#75935f"/>'
-                f'<path d="M7 7h{width-14}v3H7v32H3V10h4z" fill="#e5efcf"/>'
-                f'<path d="M7 10h{width-14}v29H7z" fill="#c8d8b7"/>'
-                f'<path d="{d}" fill="#f1f5df" transform="translate(1 1)"/>'
-                f'<path d="{d}" fill="#193c32"/>')
-        (destination / f'button-{label.lower()}.svg').write_text(svg(label, width, 52, body))
+        width = len(label) * 12 + 32
+        d = path(pixels(label, 17, 11, 2), 2)
+        body = (f'<path d="M3 0h{width-6}v3h3v30h-3v3H3v-3H0V3h3z" fill="#527bac"/>'
+                f'<path d="M4 1h{width-8}v3h3v28h-3v3H4v-3H1V4h3z" fill="#0b284e"/>'
+                f'<path d="M8 3h{width-16}v1H8z" fill="#244a78"/>'
+                f'<path d="{d}" fill="#c8ddf5"/>')
+        (destination / f'button-{label.lower()}.svg').write_text(svg(label, width, 36, body))
     print('Built pixel headline and four navigation buttons.')
 
 
