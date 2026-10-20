@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "all creative held-out records × five policies",
+    "all objective held-out records × five policies",
+    "all creative development knobs map to actual saved generations",
+    "export round-trips exact 1024-dimensional native direction",
+    "rotation, methods dialog, local anonymous human vote export",
+    "all larger-budget audit examples × five policies; no stale output after switching budgets",
+    "390px viewport without horizontal page overflow"
+  ],
+  "page_errors": [],
+  "protocol_sha256": "235f20681a9d377a59d719958a6ef8b262f3cb6c1192f5279b784af1c2f5df86"
+}

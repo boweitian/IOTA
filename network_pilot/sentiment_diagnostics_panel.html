@@ -1,0 +1,12 @@
+<section id="sentimentDiagnostics" class="card" style="margin-bottom:18px" hidden>
+<div class="row"><div><span class="kicker">MEASUREMENT DIAGNOSTICS / BEFORE INTERPRETING THE SWEEP</span><h2>为什么约一半样本在扫描中始终答错？</h2></div><span class="chip">原始数据、真实生成与注入对照</span></div>
+<p id="diagnosticFormat" class="small"></p>
+<p id="diagnosticGranularity" class="note"></p>
+<p id="diagnosticClasses" class="small muted"></p>
+<div class="tablewrap"><table id="diagnosticConditions"><thead><tr><th>诊断条件</th><th>任务</th><th>全部 100 题</th><th>原训练 70 题</th><th>原测试 30 题</th><th>与原预测一致</th></tr></thead><tbody></tbody></table></div>
+<p id="diagnosticInjection" class="small"></p>
+<p id="diagnosticCoverage" class="note"></p>
+<p id="diagnosticWarmth" class="small"></p>
+<p class="small muted">所有新增条件均为看过原结果后的诊断，不能作为新独立测试收益。三分类是同一 SST-5 样本标签的粗化，非官方 SST-2 成绩。“扫描无解”仅指有限配置没有改变正确与否；九个通用风格方向、单次前向的局部注入，并不覆盖模型可采用的全部解法。</p>
+<div class="evidence"><a href="assets/navigator9b/diagnostics/RESULTS.md">诊断报告 ↗</a><a href="assets/navigator9b/diagnostics/summary.json">全部诊断统计 ↗</a><a href="assets/navigator9b/diagnostics/original_generation.json">原提示的真实生成 ↗</a><a href="assets/navigator9b/diagnostics/source-audit.json">独立解析原始标注 ↗</a></div>
+</section>

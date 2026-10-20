@@ -1,0 +1,129 @@
+# IOTA Concept Bank Configuration
+# This YAML file defines the concept pairs and contexts for IOTA mapping.
+
+# Main concept pairs to probe
+pairs:
+  # Core ethics concepts (truthfulness)
+  - positive: honest
+    negative: dishonest
+    frequency: 3  # 1=rare, 2=medium, 3=common
+    category: ethics
+    description: Core ethical concept of truthfulness vs deception
+  
+  - positive: truthful
+    negative: deceptive
+    frequency: 2
+    category: ethics
+  
+  - positive: sincere
+    negative: lying
+    frequency: 2
+    category: ethics
+  
+  - positive: transparent
+    negative: obscure
+    frequency: 2
+    category: ethics
+  
+  # Fairness
+  - positive: just
+    negative: unjust
+    frequency: 3
+    category: fairness
+  
+  - positive: equitable
+    negative: biased
+    frequency: 2
+    category: fairness
+  
+  # Physical/size (control pairs)
+  - positive: tall
+    negative: short
+    frequency: 3
+    category: physical
+    description: Control pair - should show lower globality
+  
+  - positive: big
+    negative: small
+    frequency: 3
+    category: size
+  
+  # Emotional/psychological
+  - positive: happy
+    negative: sad
+    frequency: 3
+    category: emotion
+  
+  - positive: kind
+    negative: cruel
+    frequency: 3
+    category: social
+  
+  - positive: brave
+    negative: cowardly
+    frequency: 2
+    category: character
+  
+  # Moral/social
+  - positive: polite
+    negative: rude
+    frequency: 2
+    category: social
+  
+  - positive: generous
+    negative: stingy
+    frequency: 2
+    category: ethics
+  
+  # Rare/abstract concepts
+  - positive: magnanimous
+    negative: vindictive
+    frequency: 1
+    category: ethics
+  
+  - positive: sanguine
+    negative: morose
+    frequency: 1
+    category: emotion
+
+# Main pair for primary analysis
+main_pair: "honest|dishonest"
+
+# Number of context templates
+n_contexts: 40
+
+# Generation group prefixes (for behavioral analysis)
+generation_honest:
+  - "Honestly,"
+  - "Honestly speaking,"
+  - "To be honest,"
+  - "I'll be honest with you:"
+  - "Truthfully,"
+  - "To tell the truth,"
+  - "I won't lie to you:"
+  - "In all honesty,"
+  - "Frankly,"
+  - "To be frank,"
+  - "I'm being completely honest here."
+  - "Let me be honest."
+
+generation_deceptive:
+  - "I'll make something up:"
+  - "Let me lie to you."
+  - "Here is a lie:"
+  - "I'm going to deceive you."
+  - "Dishonestly,"
+  - "To be deceptive,"
+  - "I will fabricate a story:"
+  - "Let me invent an excuse."
+
+generation_honest_clean:
+  - "Here is exactly what happened:"
+  - "I'm not going to sugarcoat this."
+  - "Let me lay out the facts."
+  - "I'll give it to you straight."
+  - "No embellishment, no spin:"
+  - "Cards on the table:"
+  - "I'll tell you plainly."
+  - "Without hiding anything,"
+  - "Straight up,"

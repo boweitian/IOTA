@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen3.5-9B",
+  "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "layer_index": 16,
+  "run": "runs/sentiment9b-glue-sst2-100-v1",
+  "entrypoint": "sst2_sweep.py",
+  "benchmark": "GLUE / SST-2",
+  "train_count": 70,
+  "test_count": 30,
+  "evaluation_source_split": "official validation (30 sampled)"
+}

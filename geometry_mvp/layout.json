@@ -1,0 +1,12 @@
+{
+  "provenance": "Human-authored display layout: courage, confidence and initiative are neighbors; withdrawal, hesitancy and passivity are neighbors. Coordinates are not activation distances.",
+  "coordinates": {
+    "courage": {"positive": [-42, 25], "negative": [93, -27]},
+    "confidence": {"positive": [-7, 13], "negative": [110, -53]},
+    "agency": {"positive": [-80, 7], "negative": [132, -8]},
+    "warmth": {"positive": [48, 25], "negative": [-141, -17]},
+    "curiosity": {"positive": [109, 46], "negative": [-66, -41]},
+    "candor": {"positive": [-3, 52], "negative": [52, -18]},
+    "patience": {"positive": [-8, -42], "negative": [-119, 44]}
+  }
+}

@@ -1,0 +1,53 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.mpl_cache/
+*.egg-info/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+*credentials*.yaml
+*credentials*.yml
+
+# Generated experiments, live sessions, and deployment copies
+/output/
+/steering_lab/runs/
+/steering_lab/studio_runs/
+/steering_lab/runtime/
+/steering_lab/custom_directions/
+/steering_lab/dist/
+/steering_lab/web/
+/network_pilot/runs/
+/network_pilot/vendor_deps/
+/network_pilot/nltk_data/
+/geometry_mvp/dist/
+/PROGRESS_*.md
+*.log
+*.out
+*.pid
+*.tmp
+
+# Downloaded benchmark inputs and model weights
+/steering_lab/inputs/
+/network_pilot/inputs/
+hf_cache/
+.hf_cache/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/

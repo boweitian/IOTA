@@ -1,0 +1,23 @@
+__BASE_HEAD__
+<body><main>
+<div class="row"><div><span class="kicker">IOTA NAVIGATOR · CALIBRATED DIFFICULTY</span><h1>ANLI R3：对抗式文本理解与方向扫描。</h1><p class="small muted">官方数据 · 独立开发集校准 · 70 个训练 / 30 个测试 · 同一 Qwen3.5-9B 与 Search geometry</p></div><span class="chip" id="modelBadge">Qwen3.5-9B · layer 16</span></div>
+<div class="flow"><section class="card"><span class="kicker">01 / ADVERSARIAL NLI</span><h2>一段文字能支持另一句话吗？</h2><p class="small muted">给定前提与假设，判断蕴含、信息不足或矛盾。使用 Meta 发布的 ANLI 第三轮对抗样本，保留官方原文和标签；不把注释中的解释或模型答案交给模型。</p><span class="chip">A = 蕴含 · B = 信息不足 · C = 矛盾</span></section><section class="card"><span class="kicker">02 / CALIBRATE BEFORE THE SWEEP</span><h2>先确认难度，再展开方向扫描</h2><p class="small muted">30 个独立 dev 样本只做难度与格式校准，接受区间预设为 50%–85%。主实验另外从 train 抽 70、test 抽 30；三组的前提与 UID 均不重复，测试题不按模型对错挑选。</p><span class="chip" id="calibrationBadge">校准结果</span></section></div>
+<div id="classificationStatus" class="note" role="status"></div>
+<p id="classificationFormat" class="small muted"></p>
+<p class="note">这是 100 题抽样先导实验，不是官方全量 ANLI 成绩。评估沿用非思考、短答案分类协议：第 17 个 block 最后一个输入 token 加方向，FP32、关闭 TF32，读取 A/B/C 概率。</p>
+__CLASSIFICATION_DIAGNOSTICS__
+__SWEEP_PANEL__
+<details class="card" id="classificationGeometry"><summary>与 Search 相同的九方向 geometry</summary><div class="geometry"><div id="axes" class="axes"></div><div id="gram" class="heatmap" aria-label="九方向余弦矩阵"></div></div><p id="geometryNote" class="small muted"></p></details>
+<details class="card"><summary>模型、来源与证据</summary><pre id="binding" class="text small"></pre><div class="evidence"><a href="https://github.com/facebookresearch/anli">ANLI 官方 ↗</a><a href="assets/navigator9b/anli-r3/dataset-manifest.json">样本与来源清单 ↗</a><a href="assets/navigator9b/anli-r3/calibration-result.json">独立难度校准 ↗</a><a href="assets/navigator9b/anli-r3/calibration-generations.jsonl">校准真实生成 ↗</a><a href="assets/navigator9b/anli-r3/audit.json">独立核算 ↗</a><a href="sst2-archive.html">SST-2 归档 ↗</a><a href="sst5-archive.html">SST-5 与诊断归档 ↗</a></div></details>
+<footer>IOTA Navigator · ANLI R3 pilot · 校准样本不计入 100 题方向扫描。</footer>
+</main><script id="navigatorData" type="application/json">__DATA__</script><script>
+'use strict';
+const D=JSON.parse(document.getElementById('navigatorData').textContent),$=id=>document.getElementById(id),nodes=D.geometry.nodes,LABELS=D.manifest.display_labels;
+const percent=x=>(100*x).toFixed(1)+'%';
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function cell(row,text){row.append(node('td',text))}
+if(D.sweep){const s=D.sweep,c=s.calibration,f=s.format_validation;$('calibrationBadge').textContent='独立 dev baseline：'+c.correct+'/30 · '+percent(c.accuracy);$('classificationStatus').textContent='ANLI R3 完整方向扫描已完成：4,900 次主实验评分，另有独立开发集难度校准。';$('classificationFormat').textContent='格式核查：校准 30/30、主实验 '+f.agreement_with_scored+'/100 的真实生成与分类评分一致；主实验格式无效 '+f.invalid_format+' 题，A/B/C 词表概率总和最低 '+percent(f.min_label_mass)+'。'}
+$('binding').textContent=JSON.stringify({benchmark:D.manifest.benchmark,source:D.manifest.source_url,source_sha256:D.manifest.source_sha256,seed:D.manifest.seed,calibration_acceptance:D.manifest.calibration_acceptance,source_counts:D.manifest.source_counts,model:D.binding.model,geometry_sha256:D.binding.geometry_sha256,measurement:D.sweep?.measurement},null,2);
+for(const [i,c] of nodes.entries()){const b=node('button',c.name);b.onclick=()=>{$('geometryNote').textContent=c.name+' · '+c.id};$('axes').append(b);for(const [j,other] of nodes.entries()){const v=D.geometry.gram[i][j],square=node('button',v.toFixed(1));square.style.background=v>=0?'rgba(49,95,80,'+(.08+.8*Math.abs(v))+')':'rgba(191,113,72,'+(.08+.8*Math.abs(v))+')';square.style.color=Math.abs(v)>.65?'white':'#233a34';square.title=c.name+' × '+other.name+' = '+v.toFixed(5);square.setAttribute('aria-label',square.title);square.onclick=()=>$('geometryNote').textContent=c.name+' × '+other.name+'：余弦 '+v.toFixed(5);$('gram').append(square)}}
+__SWEEP_SCRIPT__
+</script></body></html>

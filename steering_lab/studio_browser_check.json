@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "all three preset characters × four scenes × three actual methods",
+    "changing a direction clears old generation evidence",
+    "exact high-dimensional recipe export, local save/reload/import, model-version rejection",
+    "anonymous output ordering, no revealed scores, previously revealed votes marked non-blind",
+    "adopt real frozen Walker recipe and replay its measured outputs",
+    "method dialog, custom scene clearing, 390px layout without overflow"
+  ],
+  "page_errors": [],
+  "automated_checks_are_not_human_evidence": true
+}

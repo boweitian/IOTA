@@ -1,0 +1,23 @@
+__BASE_HEAD__
+<body><main>
+<div class="row"><div><span class="kicker">IOTA NAVIGATOR · OFFICIAL BENCHMARK</span><h1>GLUE / SST-2：逐题扫描全部方向。</h1><p class="muted small">Qwen3.5-9B · 与 Search 相同的九方向 geometry · 100 个官方样本 × 49 个配置</p></div><span id="modelBadge" class="chip">Qwen3.5-9B · layer 16</span></div>
+<div class="flow"><section class="card"><span class="kicker">01 / OFFICIAL BENCHMARK</span><h2>GLUE / SST-2 · 正面或负面</h2><p class="small muted">使用 GLUE 官方原始数据与标签。70 题取自 train，每类 35 题；30 题取自公开带标签的 validation，每类 15 题。固定随机种子，排除前一轮已查看的 100 条文本。</p><span class="chip">A = negative · B = positive</span></section><section class="card"><span class="kicker">02 / CONTROLLED STEERING</span><h2>固定模型、方向与注入协议</h2><p class="small muted">模型与 geometry 不微调。第 17 个 block（索引 16）的最后一个输入 token 加方向，读取下一 token 的 A/B 概率。FP32、关闭 TF32；沿用最大方向投影约束。</p><span class="chip">9 方向 × ±1× / ±2× · 12 个混合 · baseline</span></section></div>
+<p class="note">这是官方数据上的 100 题先导实验。GLUE 的官方 test 不公开标签，本页的 30 题评估来自 validation，不代表官方完整测试分数。训练样本按官方原样保留，其中包含影评片段。</p>
+<div id="sst2Status" class="note" role="status"></div>
+<p id="sst2Format" class="small muted"></p>
+__SWEEP_PANEL__
+<details class="card" id="sst2Geometry"><summary>与 Search 逐位相同的九方向 geometry</summary><p class="small muted">点击格子查看原生方向间的余弦；三维显示坐标不参与评分。</p><div class="geometry"><div id="axes" class="axes"></div><div id="gram" class="heatmap" aria-label="九方向余弦矩阵"></div></div><p id="geometryNote" class="small muted"></p></details>
+<details class="card"><summary>来源、模型与可复查证据</summary><pre id="binding" class="text small"></pre><div class="evidence"><a href="https://gluebenchmark.com/">GLUE 官方 ↗</a><a href="assets/navigator9b/sst2/dataset-manifest.json">样本与来源清单 ↗</a><a href="assets/navigator9b/sst2/frozen-selection.json">训练阶段冻结的单方向选择 ↗</a><a href="assets/navigator9b/sst2/audit.json">独立核算 ↗</a><a href="assets/navigator9b/sst2/test-generation.jsonl">评估集真实生成 ↗</a><a href="sst5-archive.html">SST-5 历史实验与诊断 ↗</a></div></details>
+<footer>IOTA Navigator · GLUE / SST-2 pilot · 所有准确率来自真实 9B 模型测量。</footer>
+</main><script id="navigatorData" type="application/json">__DATA__</script><script>
+'use strict';
+const D=JSON.parse(document.getElementById('navigatorData').textContent),$=id=>document.getElementById(id),nodes=D.geometry.nodes,LABELS=D.manifest.display_labels;
+const percent=x=>(100*x).toFixed(1)+'%';
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
+function cell(row,text){row.append(node('td',text))}
+$('sst2Status').textContent=D.complete?'GLUE / SST-2 全部 4,900 次评分已完成，并通过独立核算。':'正在运行官方 SST-2 扫描：'+D.status.phase+(D.status.agent?' · '+D.status.split+' '+D.status.agent:'')+'。';
+if(D.sweep){const f=D.sweep.format_validation;$('sst2Format').textContent='格式核查：100 题真实生成与分类预测一致 '+f.agreement_with_scored+'/100，格式无效 '+f.invalid_format+' 题；A/B 词表概率总和最低 '+percent(f.min_label_mass)+'。'}
+$('binding').textContent=JSON.stringify({benchmark:D.manifest.benchmark,source:D.manifest.source_url,source_sha256:D.manifest.source_sha256,seed:D.manifest.seed,evaluation_source_split:D.manifest.evaluation_source_split,model:D.binding.model,geometry_sha256:D.binding.geometry_sha256,measurement:D.sweep?.measurement},null,2);
+for(const [i,c] of nodes.entries()){const b=node('button',c.name);b.onclick=()=>{$('geometryNote').textContent=c.name+' · '+c.id};$('axes').append(b);for(const [j,other] of nodes.entries()){const v=D.geometry.gram[i][j],square=node('button',v.toFixed(1));square.style.background=v>=0?'rgba(49,95,80,'+(.08+.8*Math.abs(v))+')':'rgba(191,113,72,'+(.08+.8*Math.abs(v))+')';square.style.color=Math.abs(v)>.65?'white':'#233a34';square.title=c.name+' × '+other.name+' = '+v.toFixed(5);square.setAttribute('aria-label',square.title);square.onclick=()=>$('geometryNote').textContent=c.name+' × '+other.name+'：余弦 '+v.toFixed(5);$('gram').append(square)}}
+__SWEEP_SCRIPT__
+</script></body></html>
