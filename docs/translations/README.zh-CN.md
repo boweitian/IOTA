@@ -6,21 +6,22 @@
   <img src="../../assets/brand/moonlight-headline.svg?v=moonlight-soft-1" alt="An inner world for intelligence that people can understand and shape." width="680">
 </p>
 
-<p align="center">
-  <a href="https://bowei.netlify.app/iota/"><img src="../../assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a>
-  <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="../../assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a>
-  <a href="https://bowei.netlify.app/blog/"><img src="../../assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a>
-</p>
-
-<div align="center">
-  <details>
-    <summary><picture><img src="../../assets/brand/moonlight-language.svg" alt="Language" height="36" align="absmiddle"></picture></summary>
-    <p>
-      <a href="https://github.com/boweitian/IOTA"><img src="../../assets/brand/moonlight-english.svg" alt="English" height="36"></a><br>
-      <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="../../assets/brand/moonlight-chinese.svg" alt="简体中文" height="36"></a>
-    </p>
-  </details>
-</div>
+<table align="center">
+  <tr>
+    <td align="center" valign="top"><a href="https://bowei.netlify.app/iota/"><img src="../../assets/brand/moonlight-demo.svg" alt="Demo" height="36"></a></td>
+    <td align="center" valign="top"><a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="../../assets/brand/moonlight-presentation.svg" alt="Presentation" height="36"></a></td>
+    <td align="center" valign="top"><a href="https://bowei.netlify.app/blog/"><img src="../../assets/brand/moonlight-blog.svg" alt="Blog" height="36"></a></td>
+    <td align="center" valign="top">
+      <details>
+        <summary><picture><img src="../../assets/brand/moonlight-language.svg" alt="Language" height="36" align="absmiddle"></picture></summary>
+        <p>
+          <a href="https://github.com/boweitian/IOTA"><img src="../../assets/brand/moonlight-english.svg" alt="English" height="36"></a><br>
+          <a href="https://github.com/boweitian/IOTA/blob/main/docs/translations/README.zh-CN.md"><img src="../../assets/brand/moonlight-chinese.svg" alt="简体中文" height="36"></a>
+        </p>
+      </details>
+    </td>
+  </tr>
+</table>
 
 IOTA 探索如何把人的意图转化为模型内部可测试的变化：理解行为，塑造内部概念几何，并与一个持续存在的数字个体共同成长。
 
