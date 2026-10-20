@@ -6,16 +6,16 @@ Demonstrates the core IOTA functionality: Map, Walker, Soul.
 
 Usage:
     # Single model analysis
-    python mvp.py --model Qwen/Qwen2.5-7B
+    python scripts/mvp.py --model Qwen/Qwen2.5-7B
     
     # Compare two models
-    python mvp.py --model Qwen/Qwen2.5-7B --compare_with Llama/Llama-3.2-3B
+    python scripts/mvp.py --model Qwen/Qwen2.5-7B --compare_with Llama/Llama-3.2-3B
     
     # Load existing map
-    python mvp.py --load_map maps/my_model.json
+    python scripts/mvp.py --load_map maps/my_model.json
     
     # Full exploration with Walker
-    python mvp.py --model Qwen/Qwen2.5-7B --explore --strategy information_gain
+    python scripts/mvp.py --model Qwen/Qwen2.5-7B --explore --strategy information_gain
 """
 
 import argparse
@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 # Add iota package to path
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from iota.atlas import AtlasBuilder, SemanticMap, compare_maps
 from iota.walker import Walker, WalkerFactory, ExplorationStrategy
@@ -42,7 +42,7 @@ def analyze_single_model(
 ):
     """Analyze a single model and generate its Soulprint."""
     if explore:
-        raise ValueError("The legacy word-pair Walker is unvalidated. Run discover.py for evidence-based exploration")
+        raise ValueError("The legacy word-pair Walker is unvalidated. Run scripts/discover.py for evidence-based exploration")
     print("\n" + "=" * 60)
     print(f"IOTA MVP - Analyzing: {model_name}")
     print("=" * 60 + "\n")
@@ -117,7 +117,7 @@ def compare_models(
     dtype: str = "bf16",
 ):
     """Compare two models and generate comparison report."""
-    raise ValueError("Word-pair summaries cannot establish cross-model identity. Use discover.py compare on matched confirmation files")
+    raise ValueError("Word-pair summaries cannot establish cross-model identity. Use scripts/discover.py compare on matched confirmation files")
     print("\n" + "=" * 60)
     print(f"IOTA MVP - Comparing Models")
     print(f"Model A: {model_a}")
@@ -231,10 +231,10 @@ def main():
     parser.print_help()
     print("\n" + "=" * 60)
     print("Example usage:")
-    print("  python mvp.py --model Qwen/Qwen2.5-7B")
-    print("  python mvp.py --model Qwen/Qwen2.5-7B --explore")
-    print("  python mvp.py --model Qwen/Qwen2.5-7B --compare_with Llama/Llama-3.2-3B")
-    print("  python mvp.py --load_map output/Qwen_Qwen2_5-7B_map.json")
+    print("  python scripts/mvp.py --model Qwen/Qwen2.5-7B")
+    print("  python scripts/mvp.py --model Qwen/Qwen2.5-7B --explore")
+    print("  python scripts/mvp.py --model Qwen/Qwen2.5-7B --compare_with Llama/Llama-3.2-3B")
+    print("  python scripts/mvp.py --load_map output/Qwen_Qwen2_5-7B_map.json")
     print("=" * 60)
 
 

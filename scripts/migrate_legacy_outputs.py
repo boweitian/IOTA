@@ -13,7 +13,7 @@ import shutil
 
 
 def main():
-    output = Path(__file__).parent / "output"
+    output = Path(__file__).resolve().parents[1] / "output"
     archive = output / "legacy_archive"
     archive.mkdir(exist_ok=True)
     manifest = {}
@@ -63,7 +63,7 @@ def main():
         page = f'''<!doctype html><html lang="zh"><meta charset="utf-8"><title>IOTA historical probes</title>
 <style>body{{font:16px system-ui;max-width:1000px;margin:40px auto;padding:20px;line-height:1.8}}td{{padding:8px;border-bottom:1px solid #aaa}}</style>
 <h1>IOTA · 历史探测结果</h1><p>{html.escape(note)}</p><p>未测量的深度平台、人格分数和 invariant 声明已撤回。原始产物保存在 legacy_archive 中，仅供溯源。</p>
-<p>这些统计量不构成 Model Semantic Identity。条件地图与探索轨迹使用 discover.py 的新报告。</p><table><tr><th>词对</th><th>历史 LOO 指标</th></tr>{rows}</table></html>'''
+<p>这些统计量不构成 Model Semantic Identity。条件地图与探索轨迹使用 scripts/discover.py 的新报告。</p><table><tr><th>词对</th><th>历史 LOO 指标</th></tr>{rows}</table></html>'''
         (output/(stem+"_atlas.html")).write_text(page)
     (archive/"manifest.json").write_text(json.dumps(manifest,indent=2))
     (archive/"README.md").write_text("# Historical outputs — invalid identity claims\n\nThese original bytes are preserved for audit only. 7B directions were random placeholders; both original Soulprints contained unmeasured defaults. Do not use them as measured geometry or model identity. See ../ active corrected artifacts and ../../REVIEW_2026-10-11.md.\n")

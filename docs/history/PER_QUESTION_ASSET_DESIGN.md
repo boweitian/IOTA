@@ -19,4 +19,4 @@ GSM8K、BBH 保存最终答案与精确判分；IFEval 保存官方 strict 检�
 - 样本 × 配置的实测响应矩阵，以及 benchmark 对各方向的响应画像。
 - 具有相同成功方向集合的题目组，作为后续研究子问题结构的原始资产。
 
-[当前实验与字典](network_pilot/runs/sample-assets-v1/RESULTS.md)。[旧设计](GEOMETRY_ASSET_PILOT.md)过早把提前选方向的调度器效果作为主目标；[旧实验](network_pilot/runs/pilot-2124657/RESULTS.md)保留为独立历史记录。之后可用成功字典研究混合搜索、子问题结构、梯度优化和调度，但它们不替代当前逐题资产发现工程。
+[当前实验与字典](../../network_pilot/runs/sample-assets-v1/RESULTS.md)。[旧设计](GEOMETRY_ASSET_PILOT.md)过早把提前选方向的调度器效果作为主目标；[旧实验](../../network_pilot/runs/pilot-2124657/RESULTS.md)保留为独立历史记录。之后可用成功字典研究混合搜索、子问题结构、梯度优化和调度，但它们不替代当前逐题资产发现工程。

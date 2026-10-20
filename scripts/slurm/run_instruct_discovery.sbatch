@@ -15,4 +15,4 @@ export TRANSFORMERS_OFFLINE=1
 export PYTHONUNBUFFERED=1
 export OMP_NUM_THREADS=2
 IOTA_PY=/beacon-projects/worldmodel/btian/miniforge3/envs/pathorob/bin/python
-"$IOTA_PY" discover.py run --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --cache-dir /beacon-projects/worldmodel/btian/hf_cache/hub --budget 24 --seeds 0 1 2 --output output/discovery_qwen05_instruct_v2
+"$IOTA_PY" scripts/discover.py run --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --cache-dir /beacon-projects/worldmodel/btian/hf_cache/hub --budget 24 --seeds 0 1 2 --output output/discovery_qwen05_instruct_v2

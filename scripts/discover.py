@@ -7,6 +7,11 @@ import math
 from pathlib import Path
 import statistics
 
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
 from iota.backends import SyntheticBackend, HFBackend, ReplayBackend
 from iota.discovery import (DiscoveryWalker, EvidenceMap, confirm_map, soulprint,
                             compare_confirmations, digest, PROTOCOL)
@@ -48,7 +53,7 @@ def run(args):
               "hypothesis_noise":.1,"complexity_log_prior_per_literal":-.7,
               "shared_seed_anchors":3,
               "expansion_trigger":"best-rule counterexample OR outcome probability below 0.35",
-              "protocol_source_hash":digest(Path(__file__).with_name("iota").joinpath("discovery.py").read_text())}
+              "protocol_source_hash":digest(ROOT.joinpath("iota", "discovery.py").read_text())}
     save(config,out/"protocol.json")
     maps = []
     # Complete every exploration before evaluating any held-out labels.

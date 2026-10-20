@@ -379,7 +379,7 @@ def compare_maps(map_a: SemanticMap, map_b: SemanticMap) -> dict:
             or map_a.model_name != map_b.model_name
             or map_a.provenance.get("protocol") != map_b.provenance.get("protocol")
             or map_a.evidence_level != "activation_probe" or map_b.evidence_level != "activation_probe"):
-        raise ValueError("Raw direction comparison requires the same pinned model and protocol; use discover.py compare for matched behavioral readouts")
+        raise ValueError("Raw direction comparison requires the same pinned model and protocol; use scripts/discover.py compare for matched behavioral readouts")
     comparison = {
         "shared_concepts": [],
         "divergent_concepts": [],

@@ -1,13 +1,15 @@
 <p align="center">
-  <img src="Moonlit%20Cat%20by%20the%20Sea.png" alt="IOTA — Moonlit Cat by the Sea" width="100%">
+  <img src="assets/brand/moonlit-cat-by-the-sea.png" alt="Moonlit Cat by the Sea" width="100%">
 </p>
 
-<h1 align="center">IOTA</h1>
-<p align="center"><strong>An inner world for intelligence that people can understand and shape.</strong></p>
+<h1 align="center">
+  <img src="assets/brand/headline.svg" alt="An inner world for intelligence that people can understand and shape." width="100%">
+</h1>
+
 <p align="center">
-  <a href="https://bowei.netlify.app/iota/">Explore the demo</a> ·
-  <a href="README.zh-CN.md">中文介绍</a> ·
-  <a href="IOTA%20general.pptx">Project presentation</a>
+  <a href="https://bowei.netlify.app/iota/"><img src="assets/brand/button-demo.svg" alt="Demo" height="48"></a>
+  <a href="https://github.com/boweitian/IOTA/tree/zh-CN"><img src="assets/brand/button-chinese.svg" alt="Chinese" height="48"></a>
+  <a href="https://github.com/boweitian/IOTA/raw/refs/heads/main/docs/presentation/IOTA-general.pptx"><img src="assets/brand/button-presentation.svg" alt="Presentation" height="48"></a>
 </p>
 
 IOTA connects human intentions to testable changes inside a model. We study how to understand behavior, shape internal concept geometry, and grow alongside a persistent digital individual.
@@ -102,8 +104,10 @@ Useful entry points:
 | [`network_pilot/audit_fullspace_detailed.py`](network_pilot/audit_fullspace_detailed.py) | Independent scan verification |
 | [`geometry_mvp/`](geometry_mvp/) | Lightweight measured geometry explorer |
 | [`iota/`](iota/) | Earlier mapping, exploration, and evidence prototypes |
+| [`scripts/`](scripts/) | Command-line tools, documentation assets, and Slurm launchers |
+| [`requirements/`](requirements/) | Core prototype dependencies |
 
-Large generated runs, downloaded benchmarks, model checkpoints, local credentials, live conversations, and GPU-session state are excluded from Git. The small `geometry_mvp/data*` sample artifacts are included for the offline explorer. Historical workspace notes are preserved in [`README_LEGACY.md`](README_LEGACY.md); their local result links refer to separately generated experiment artifacts.
+Large generated runs, downloaded benchmarks, model checkpoints, local credentials, live conversations, and GPU-session state are excluded from Git. The small `geometry_mvp/data*` sample artifacts are included for the offline explorer. Historical workspace notes are preserved in [`docs/history/README_LEGACY.md`](docs/history/README_LEGACY.md); their local result links refer to separately generated experiment artifacts.
 
 ## Development direction
 

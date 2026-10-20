@@ -152,7 +152,7 @@ sbatch run.sbatch
 
 对全部 175 个冻结样本遍历 37 个配置（9 个高层方向 × 正负 × 两档强度，加原模型），并收入已有混合方向证据。保留每题全部成功方向、失败方向、原始输出和判分。原模型是候选，逐题最好结果必定不低于原模型。
 
-[当前结果](runs/sample-assets-v1/RESULTS.md) · [逐题字典](runs/sample-assets-v1/asset_bundle/sample_direction_dictionary.jsonl) · [设计](../PER_QUESTION_ASSET_DESIGN.md)
+[当前结果](runs/sample-assets-v1/RESULTS.md) · [逐题字典](runs/sample-assets-v1/asset_bundle/sample_direction_dictionary.jsonl) · [设计](../docs/history/PER_QUESTION_ASSET_DESIGN.md)
 
 两个工程入口是 `geometry_asset.py`（构建、重放高层几何）和 `sample_assets.py`（逐题穷举、保存证据）。`asset_index.py` 建立题目与方向的双向索引、响应矩阵和 benchmark 方向画像。查询一个样本并导出完整干预配置：
 
@@ -169,7 +169,7 @@ sbatch run.sbatch
 
 # IOTA 网络几何资产 pilot
 
-本目录实施 [网络资产试验设计](../GEOMETRY_ASSET_PILOT.md) 的首个局部 pilot：一个固定版本 Qwen3.5-0.8B、九个种子节点、五类任务。目标是测量可复用网络及任务配置，逐步扩展整个网络。
+本目录实施 [网络资产试验设计](../docs/history/GEOMETRY_ASSET_PILOT.md) 的首个局部 pilot：一个固定版本 Qwen3.5-0.8B、九个种子节点、五类任务。目标是测量可复用网络及任务配置，逐步扩展整个网络。
 
 已完成运行：`runs/pilot-2124657/`。[报告](runs/pilot-2124657/RESULTS.md) 和 [状态](runs/pilot-2124657/summary.json) 包含五项主实验、跨任务交换、验证筛选修正及梯度探索。
 

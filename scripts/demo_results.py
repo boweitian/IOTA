@@ -6,7 +6,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-root = Path(__file__).resolve().parent
+root = Path(__file__).resolve().parents[1]
 source = root.parent / 'verify' / 'results'
 out = root / 'output'
 out.mkdir(exist_ok=True)

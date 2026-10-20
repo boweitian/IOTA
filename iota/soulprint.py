@@ -111,7 +111,7 @@ class ModelIdentity:
         with open(path) as f:
             data = json.load(f)
         if data.get("status") not in ("unconfirmed_activation_probe_summary", "historical_unconfirmed_probe_summary"):
-            raise ValueError("Unverified legacy identity artifact; run migrate_legacy_outputs.py before loading")
+            raise ValueError("Unverified legacy identity artifact; run scripts/migrate_legacy_outputs.py before loading")
         
         # Reconstruct
         invariant = [IdentityMarker(**m) for m in data.get("invariant_markers", [])]
@@ -214,10 +214,10 @@ class SoulprintGenerator:
         return (f"Model '{self.map.model_name}': {len(self.map.concept_directions)} word-pair "
                 f"probe records, evidence level '{self.map.evidence_level}'. "
                 "No confirmed global invariants, depth plateau or behavioral identity. "
-                "Use discover.py for conditional hypotheses and held-out behavioral confirmation.")
+                "Use scripts/discover.py for conditional hypotheses and held-out behavioral confirmation.")
 
     def compare_with(self, other_identity):
-        raise ValueError("Unconfirmed probe summaries cannot establish differential model identity; use discover.py compare")
+        raise ValueError("Unconfirmed probe summaries cannot establish differential model identity; use scripts/discover.py compare")
 
 
 def generate_soulprint(map: SemanticMap) -> ModelIdentity:
@@ -236,4 +236,4 @@ def compare_soulprints(
     This is the key product feature: showing how two models differ
     at the semantic level.
     """
-    raise ValueError("Unconfirmed probe summaries cannot establish differential model identity; use discover.py compare")
+    raise ValueError("Unconfirmed probe summaries cannot establish differential model identity; use scripts/discover.py compare")

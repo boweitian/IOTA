@@ -15,5 +15,5 @@ export PYTHONUNBUFFERED=1
 nvidia-smi -L
 PY=/beacon-projects/worldmodel/btian/miniforge3/envs/pathorob/bin/python
 "$PY" -c 'import torch, transformers; print(torch.__version__, transformers.__version__); assert torch.cuda.is_available()'
-"$PY" demo.py
-"$PY" mvp.py --model Qwen/Qwen2.5-3B --cache_dir "$HF_HOME/hub" --output_dir ./output --dtype bf16
+"$PY" scripts/demo.py
+"$PY" scripts/mvp.py --model Qwen/Qwen2.5-3B --cache_dir "$HF_HOME/hub" --output_dir ./output --dtype bf16

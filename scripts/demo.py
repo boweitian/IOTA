@@ -9,7 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--compare", action="store_true", help="Show same-protocol consistency statistics, not model identity")
     args = parser.parse_args()
-    source = Path(__file__).parent.parent / "verify" / "results"
+    source = Path(__file__).resolve().parents[2] / "verify" / "results"
     files = sorted(source.glob("*.json")) if args.compare else [source / "Qwen2_5-7B.json"]
     print("Historical word-swap consistency metrics. No geometry reconstruction or Soulprint.")
     for path in files:
@@ -24,7 +24,7 @@ def main():
             depth = len(values) - 1
             lo, hi = max(1, int(.25 * depth)), int(.75 * depth)
             print(f"  {pair}: band {lo}–{hi} peak LOO={max(values[lo:hi+1]):.4f}")
-    print("\nFor conditional discovery with held-out confirmation: python discover.py --help")
+    print("\nFor conditional discovery with held-out confirmation: python scripts/discover.py --help")
 
 
 if __name__ == "__main__":

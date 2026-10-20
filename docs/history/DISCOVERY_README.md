@@ -4,7 +4,7 @@ IOTA 的目标是建立可持续检验、可比较的 AI 概念地图。目前�
 
 此前进展与问题见 [审计](REVIEW_2026-10-11.md)。旧 README 的“MVP complete”及竞争对手比较已撤回。
 
-本轮实现、20 项测试、真实 GPU 实验与测量失败的完整记录见 [进展报告](PROGRESS_2026-10-11.md)。真实读出目前尚未通过质量检查，不能交付经验证的模型身份。
+本轮实现、20 项测试、真实 GPU 实验与测量失败的完整记录见 [进展报告](progress/PROGRESS_2026-10-11.md)。真实读出目前尚未通过质量检查，不能交付经验证的模型身份。
 
 ## 当前闭环
 
@@ -20,9 +20,9 @@ Python 标准库即可运行发现、证据重放和报告；HF 后端才需要 
 ```bash
 cd /beacon-projects/worldmodel/btian/2.3_Monad/IOTA
 python -m unittest discover -s tests -v
-python discover.py run --backend synthetic --budget 24 --seeds 0 1 2 --output output/my_fixture
-python discover.py inspect output/my_fixture/active_seed0_map.json
-python discover.py replay output/my_fixture/active_seed0_map.json
+python scripts/discover.py run --backend synthetic --budget 24 --seeds 0 1 2 --output output/my_fixture
+python scripts/discover.py inspect output/my_fixture/active_seed0_map.json
+python scripts/discover.py replay output/my_fixture/active_seed0_map.json
 ```
 
 Synthetic 是已知规则的程序夹具，验证选题、修正、预算、确认隔离及可复现性。它的结果不是 AI 模型测量。输出目录已有 campaign 时拒绝覆盖；重新实验需用新目录。
@@ -30,14 +30,14 @@ Synthetic 是已知规则的程序夹具，验证选题、修正、预算、确�
 ## 真实模型测量
 
 ```bash
-python discover.py run --backend hf \
+python scripts/discover.py run --backend hf \
   --model Qwen/Qwen2.5-0.5B-Instruct \
   --revision 7ae557604adf67be50417f59c2c2f167def9a775 \
   --cache-dir ../../hf_cache/hub \
   --budget 24 --seeds 0 1 2 --output output/my_model
 ```
 
-仅使用本地已缓存、完整 commit hash 固定的模型。默认 CUDA/bf16；CPU 可显式使用 `--device cpu --dtype fp32`。现有集群脚本：`run_discovery.sbatch`（两个基座模型），`run_instruct_discovery.sbatch`（指令模型）。
+仅使用本地已缓存、完整 commit hash 固定的模型。默认 CUDA/bf16；CPU 可显式使用 `--device cpu --dtype fp32`。现有集群脚本：`scripts/slurm/run_discovery.sbatch`（两个基座模型），`scripts/slurm/run_instruct_discovery.sbatch`（指令模型）。
 
 当前协议为 **authorization-privacy-v2**。HF 用单 token A/B 作为输出标签，交换两次标签与披露/拒绝的对应关系，平均语义 log odds。四个候选在同一次 forward 中测量，记录标签 token、两套映射的概率及分歧。它是受限读出，不是自由生成的回答或真实行动概率。
 
@@ -61,21 +61,21 @@ python discover.py run --backend hf \
 继续探索已有地图可使用库接口 `DiscoveryWalker.resume(backend, EvidenceMap.load(path)).run(additional_budget)`；要求同一后端及协议，恢复随机状态。
 
 ```bash
-python discover.py compare MODEL_A/active_seed0_confirmation.json \
+python scripts/discover.py compare MODEL_A/active_seed0_confirmation.json \
   MODEL_B/active_seed0_confirmation.json --output comparison.json
-python discover.py refresh-report MAP.json CONFIRMATION.json --output review
+python scripts/discover.py refresh-report MAP.json CONFIRMATION.json --output review
 ```
 
 比较使用相同情境中的行为读出，校验内容哈希、测量协议与方法，不直接点积不同模型的隐藏向量。refresh-report 只重新汇总已有证据，不能补出缺失测量。
 
 ## 旧词对探测
 
-`mvp.py --model ...` 保留为最终 hidden-state 词对统计工具。峰值层、深度平台、行为分数和全局 invariant 不再用默认值生成。旧词表 Walker 与未经对齐的跨模型身份比较已禁用，改用 discover.py。
+`scripts/mvp.py --model ...` 保留为最终 hidden-state 词对统计工具。峰值层、深度平台、行为分数和全局 invariant 不再用默认值生成。旧词表 Walker 与未经对齐的跨模型身份比较已禁用，改用 scripts/discover.py。
 
-`demo.py` 只读取历史验证指标，不再生成随机方向。`migrate_legacy_outputs.py` 已将原始产物及哈希保存到 `output/legacy_archive/`，移除活动 7B 文件中的随机方向、撤回两份历史 Soulprint 的未测量字段，并将无依据的层标签留空。原始研究数据 `../verify/results/` 保留。
+`scripts/demo.py` 只读取历史验证指标，不再生成随机方向。`scripts/migrate_legacy_outputs.py` 已将原始产物及哈希保存到 `output/legacy_archive/`，移除活动 7B 文件中的随机方向、撤回两份历史 Soulprint 的未测量字段，并将无依据的层标签留空。原始研究数据 `../verify/results/` 保留。
 
 ## 尚未完成
 
 当前规则空间是 public OR 有限 Boolean 条件的组合，不能覆盖任意关系；候选生成依赖已知可观测事实。这是结构发现的第一步，不等于开放式未知概念发现。内部 activation/因果干预、局部几何连接、跨模型坐标对齐、真实版本漂移以及对普通行为指纹或 benchmark 的优势，仍需单独实现并验证。
 
-`probe_readout.py` 在三个探索锚点上记录真实生成回答、标签 token 与正反问法，诊断读出接口；它不读取确认集，也不自动认定替代问法有效。
+`scripts/probe_readout.py` 在三个探索锚点上记录真实生成回答、标签 token 与正反问法，诊断读出接口；它不读取确认集，也不自动认定替代问法有效。

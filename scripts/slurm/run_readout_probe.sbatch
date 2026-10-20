@@ -13,4 +13,4 @@ cd /beacon-projects/worldmodel/btian/2.3_Monad/IOTA
 export HF_HUB_OFFLINE=1
 export PYTHONUNBUFFERED=1
 export OMP_NUM_THREADS=2
-/beacon-projects/worldmodel/btian/miniforge3/envs/pathorob/bin/python probe_readout.py --model Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --cache-dir /beacon-projects/worldmodel/btian/hf_cache/hub --output output/readout_probe_v2
+/beacon-projects/worldmodel/btian/miniforge3/envs/pathorob/bin/python scripts/probe_readout.py --model Qwen/Qwen2.5-0.5B-Instruct --revision 7ae557604adf67be50417f59c2c2f167def9a775 --cache-dir /beacon-projects/worldmodel/btian/hf_cache/hub --output output/readout_probe_v2
