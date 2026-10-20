@@ -36,7 +36,7 @@ GitHub strips custom README CSS and scripts. The headline and navigation buttons
 python scripts/build_readme_assets.py
 ```
 
-Both languages live on `main` as separate rendered Markdown pages. The English repository homepage is `README.md`; its Chinese button opens `docs/translations/README.zh-CN.md` in GitHub's Markdown preview. The English button there returns to the repository homepage. There is no separate language branch.
+Both languages live on `main` as separate rendered Markdown pages. The English repository homepage is `README.md`; the Language disclosure after Demo, Presentation, and Blog offers English and 简体中文. Its Chinese choice opens `docs/translations/README.zh-CN.md` in GitHub's Markdown preview, and English returns to the repository homepage. The native disclosure uses GitHub's own styling, so it follows the pixel-button row. There is no separate language branch.
 
 Maintain the English source in `docs/translations/README.en.md` and regenerate the root homepage after changes:
 
