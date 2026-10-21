@@ -1,0 +1,7 @@
+/* Allow English labels to wrap at words while preserving the existing layout. */
+html[lang="en"] #agentSummary{flex-shrink:0;overflow-wrap:normal;word-break:normal}
+html[lang="en"] .topnav #methodButton{color:var(--control-ink,var(--ink));border-color:var(--control-line,var(--line))}
+html[lang="en"] .block-edit strong,html[lang="en"] .block-pole{overflow-wrap:normal;word-break:normal}
+html[lang="en"] .block-inspector select{font-size:12px}
+html[lang="en"] .quicknav button,html[lang="en"] .theme-control{white-space:nowrap}
+@media(max-width:740px){html[lang="en"] #agentSummary{max-width:42%;min-width:64px}html[lang="en"] .agent-tabs button{flex:1;min-width:0}html[lang="en"] .intro>div{min-width:0}}
