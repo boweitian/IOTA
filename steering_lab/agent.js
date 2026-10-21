@@ -20,7 +20,7 @@
     document.title = 'IOTA Search · ' + name;
     set('agentName', name); set('chatAgentName', name);
     const active = C.filter(c => Math.abs(profile.coefficients[c.id] || 0) > .001);
-    set('agentSummary', active.length ? active.map(c => c.name).join(' · ') : '内在方向尚未施加');
+    $('agentSummary').replaceChildren(...(active.length ? active.flatMap((c, i) => { const name = el('span', '', c.name); if (c.custom && !c.source) name.dataset.iotaNative = ''; return [...(i ? [document.createTextNode(' · ')] : []), name]; }) : [document.createTextNode('内在方向尚未施加')]));
     set('chatConfigNote', '下一条回复使用「' + name + '」当前的内在配置');
     storeState();
   }

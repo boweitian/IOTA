@@ -4,3 +4,8 @@ html.workspace-embedded .intro.agent-intro{display:flex;margin-bottom:18px}
 
 .portrait{background:transparent;border-radius:0}.portrait img{display:block;width:43px;height:43px;object-fit:contain;image-rendering:pixelated}
 #identitySliders:empty{display:none}
+
+/* Library deletion remains distinct from disabling an intervention block. */
+.delete-direction{display:block;margin:7px 0 0 auto;padding:3px 7px;font-size:10px;color:#a04532;background:transparent;border-color:var(--line)}
+.direction-delete-notice{font-size:11px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.direction-delete-notice:empty{display:none}.direction-undo{padding:3px 8px;font-size:11px}

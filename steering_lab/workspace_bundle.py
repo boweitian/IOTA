@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parent
 ASSETS=ROOT.parent/'network_pilot/runs/expanded-assets-v2'
 
 def ui_version():
-    sources=[ROOT/name for name in ['workspace.html','studio.html','agent.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg','theme-blue.css','theme.js','assets/brand/iota-logo.png']]
+    sources=[ROOT/name for name in ['workspace.html','studio.html','agent.js','direction-manager.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg','theme-blue.css','theme.js','assets/brand/iota-logo.png']]
     sources += [ROOT.parent/'network_pilot'/name for name in ['current_navigator.json','sentiment_navigator_page.html','sentiment_sweep_panel.html','sentiment_sweep_panel.js','sentiment_diagnostics_panel.html','sentiment_diagnostics_panel.js','sst2_navigator_page.html','build_sst2_navigator.py','classification_navigator_page.html','build_classification_navigator.py']]
     return hashlib.sha256(b''.join(p.read_bytes() for p in sources)).hexdigest()[:12]
 
@@ -57,7 +57,7 @@ def build_workspace(dist):
         from build_generation_view import build as build_generated
         build_generated(run,dist)
         (dist/'scenarios.html').write_text(embedded((dist/'scenarios.html').read_text(),'scenarios'))
-        for name in ['agent.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
+        for name in ['agent.js','direction-manager.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
             shutil.copy2(ROOT/name,dist/name)
         print('WORKSPACE BUILT: Search + Navigator; full generated answers; common Qwen3.5-9B geometry verified',flush=True)
         return
@@ -73,7 +73,7 @@ def build_workspace(dist):
     for name in ['capabilities.html','router-analysis.html']:(dist/name).write_text(embedded(page,'capabilities'))
     scenarios=(dist/'scenarios.html').read_text()
     (dist/'scenarios.html').write_text(embedded(scenarios,'scenarios'))
-    for name in ['agent.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
+    for name in ['agent.js','direction-manager.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
         shutil.copy2(ROOT/name,dist/name)
     summary=data['summary'];complete=data['complete']
     metadata=dict(model=model['model'].split('/')[-1],scenario_model=other['model'].split('/')[-1],
@@ -98,7 +98,7 @@ def build_workspace(dist):
     (dist/'index.html').write_text(workspace.replace('__UI_VERSION__',ui_version()))
     for name in ['RESEARCH.md','PILOT.md']:
         if (ROOT/name).exists():shutil.copy2(ROOT/name,dist/name)
-    sources=[ROOT/'studio.html',ROOT/'workspace.html',ROOT/'agent.js',ROOT/'blocks.js',ROOT/'regularization.js',
+    sources=[ROOT/'studio.html',ROOT/'workspace.html',ROOT/'agent.js',ROOT/'direction-manager.js',ROOT/'blocks.js',ROOT/'regularization.js',
         pilot/'current_navigator.json',pilot/'sentiment_navigator_page.html',pilot/'build_sentiment_navigator.py',
         pilot/'sentiment_sweep_panel.html',pilot/'sentiment_sweep_panel.js',
         pilot/'sentiment_diagnostics_panel.html',pilot/'sentiment_diagnostics_panel.js',
@@ -139,7 +139,7 @@ def build_workspace_legacy_0p8b(dist):
         '<a href="index.html#capabilities" target="_top">IOTA Navigator ↗</a>')
     scenarios=scenarios.replace('<span>CHARACTER STUDIO</span>','<span>SEARCH</span>')
     (dist/'scenarios.html').write_text(embedded(scenarios,'scenarios'))
-    for name in ['agent.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
+    for name in ['agent.js','direction-manager.js','agent.css','blocks.js','blocks.css','regularization.js','agent-avatar.svg']:
         shutil.copy2(ROOT/name,dist/name)
     shutil.copy2(ROOT/'runs/identity-pilot-20261017-v1/RESULTS.md',dist/'IDENTITY_EXPERIMENT.md')
     evidence_dir=dist/'assets/steering';evidence_dir.mkdir(parents=True,exist_ok=True)
@@ -162,6 +162,6 @@ def build_workspace_legacy_0p8b(dist):
         if (ROOT/name).exists():shutil.copy2(ROOT/name,dist/name)
     manifest=dict(sections=['capabilities','scenarios'],default_section='scenarios',ui_version=ui_version(),same_origin_api=True,
         preserves_existing_browser_storage=True,shared_original_directions_bit_exact=same_model,
-        source_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ASSETS/'view/index.html',ROOT/'studio.html',ROOT/'workspace.html',ROOT/'agent.js',ROOT/'agent.css',ROOT/'blocks.js',ROOT/'blocks.css',ROOT/'regularization.js',ROOT/'agent-avatar.svg']})
+        source_sha256={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ASSETS/'view/index.html',ROOT/'studio.html',ROOT/'workspace.html',ROOT/'agent.js',ROOT/'direction-manager.js',ROOT/'agent.css',ROOT/'blocks.js',ROOT/'blocks.css',ROOT/'regularization.js',ROOT/'agent-avatar.svg']})
     (dist/'workspace-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     print('WORKSPACE BUILT: capabilities + scenarios,','common 9-direction geometry verified' if same_model else 'separate models: '+metadata['model']+' / '+metadata['scenario_model'],flush=True)

@@ -6,6 +6,7 @@
   const policy = () => D.strength_regularization || (D.total_strength_cap_enabled === false ? 'none' : 'norm');
   const signature = () => canon({profile: normalize(profile), regularization: policy()});
   const direction = id => C.find(c => c.id === id);
+  function directionLabel(tag, cls, value, c) { const node = el(tag, cls, value); if (c?.custom && !c.source) node.dataset.iotaNative = ''; return node; }
   function persistBlocks() {
     persist(key, {order, confirmations, tested});
   }
@@ -40,7 +41,7 @@
       const card = el('article', 'intervention-block' + (draft?.id === id ? ' selected' : ''));
       card.dataset.direction = id;
       const edit = el('button', 'block-edit'); edit.type = 'button'; edit.setAttribute('aria-label', '编辑干预：' + c.name);
-      edit.append(el('span', 'block-number', String(index + 1).padStart(2, '0')), el('strong', '', c.name), el('span', 'block-pole', value >= 0 ? c.high : c.low));
+      edit.append(el('span', 'block-number', String(index + 1).padStart(2, '0')), directionLabel('strong', '', c.name, c), directionLabel('span', 'block-pole', value >= 0 ? c.high : c.low, c));
       const strength = el('b', 'block-dose' + (Math.abs(value) > 1 ? ' elevated' : ''), Math.abs(value).toFixed(2) + '×');
       edit.append(strength, el('span', 'block-phase', confirmations[id] === sig ? '你已确认有效' : measured ? '已试聊 · 待你判断' : '已配置 · 待试聊'));
       if (c.source || c.positions === 'all') edit.append(el('small', 'block-experiment', '实验 · 全输入位置'));
@@ -69,7 +70,7 @@
     for (const [label, list] of [['内置方向', C.filter(c => !c.custom)], ['你的自定义方向', C.filter(c => c.custom && !c.source)], ['实验配置', C.filter(c => c.source)]]) {
       if (!list.length) continue;
       const group = document.createElement('optgroup'); group.label = label;
-      for (const c of list) { const option = document.createElement('option'); option.value = c.id; option.textContent = c.name; group.append(option); }
+      for (const c of list) { const option = document.createElement('option'); option.value = c.id; option.textContent = c.name; if (c.custom && !c.source) option.dataset.iotaNative = ''; group.append(option); }
       select.append(group);
     }
     if (selected && direction(selected)) select.value = selected;
@@ -93,7 +94,7 @@
     set('blockDirectionNote', c?.source || c?.positions === 'all' ? '实验方向：回答状态差，第 17 个 block，全输入位置注入。原实验为 2×；当前组合效果需重新试聊。' : c?.custom ? '使用你构建的内部方向，行为效果尚未认证。' : c?.note || '使用同一 Geometry 中的内置方向。');
     $('blockStrength').value = draft.strength;
     set('blockStrengthValue', draft.strength.toFixed(2) + '×');
-    $('blockPositive').textContent = '正向 · ' + (c?.high || ''); $('blockNegative').textContent = '负向 · ' + (c?.low || '');
+    $('blockPositive').replaceChildren(document.createTextNode('正向 · '), directionLabel('span', '', c?.high || '', c)); $('blockNegative').replaceChildren(document.createTextNode('负向 · '), directionLabel('span', '', c?.low || '', c));
     $('blockPositive').setAttribute('aria-pressed', String(draft.sign > 0)); $('blockNegative').setAttribute('aria-pressed', String(draft.sign < 0));
     $('blockStrengthValue').classList.toggle('elevated', draft.strength > 1);
     $('applyBlock').textContent = draft.strength === 0 ? '停用这块干预' : draft.id ? '保存干预强度' : '应用干预，延伸下一块';

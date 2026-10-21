@@ -43,7 +43,7 @@
     for (const method of ['fillText', 'strokeText', 'measureText']) {
       const original = CanvasRenderingContext2D.prototype[method];
       CanvasRenderingContext2D.prototype[method] = function (value, ...args) {
-        return Reflect.apply(original, this, [translate(value), ...args]);
+        return Reflect.apply(original, this, [window.IOTADirections?.isCustomLabel(value) ? value : translate(value), ...args]);
       };
     }
   }
